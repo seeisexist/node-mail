@@ -6,6 +6,17 @@ var transporter = nodemailer.createTransport('smtps://user@gmail.com:myPass@smtp
 // change user@gmail.com to your g-mail address
 // change myPass to your g-mail password
 
+// when using AWS
+var transporterAws = nodemailer.createTransport(smtpTransport({
+    host: 'email-smtp.us-east-1.amazonaws.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: aws_smtp_user,
+        pass: aws_smtp_pw
+    }
+}));
+
 // setup e-mail data with unicode symbols
 var mailOptions = {
     from: '"Sender" <user@gmail.com>', // sender address
